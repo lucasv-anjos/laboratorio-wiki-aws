@@ -9,13 +9,13 @@
 ## 👤 Identificação
 
 **Nome:**  
-Preencha aqui
+Lucas anjos
 
 **Data:**  
-Preencha aqui
+29/09/2026
 
 **Link do repositório:**  
-Preencha aqui
+https://github.com/lucasv-anjos/laboratorio-wiki-aws
 
 ---
 
@@ -36,7 +36,7 @@ Exemplo de como responder, com o formato e o que ele implica:
 **Sua resposta:**
 
 ```md
-Preencha aqui.
+dentro da pasta raw existe um arquivo png; um arquivo pdf e um arquivo csv, tratando-se respectivamente de um arquivo salvo como imagem, um salvo como documento e outro como tabela dificultando assim a extração dos dados já que cada um possui caracteristicas diferentes dificultando assim a extração dos dados.
 ```
 
 ---
@@ -103,7 +103,7 @@ Serviços que você pode considerar:
 **Sua resposta:**
 
 ```md
-Preencha aqui.
+utilizando o serviço da amazon S3 é possível armazenar os dados não estruturados e mesmo após a extração e normalização dos dados o S3 ainda sim mantem os arquivos originais fazendo assim com que possa ser possível reprocessa-los novamente caso necessário. efetivamente ele será utilizado como pipeline de dados em que o usuário faz o upload do arquivo e ele é salvo dentro da AWS para que possa ser feito o fluxo de extração e normalização.
 ```
 
 ---
@@ -115,7 +115,7 @@ Explique como garantir que os arquivos originais sejam mantidos intactos e rastr
 **Sua resposta:**
 
 ```md
-Preencha aqui.
+utilizando o serviço da amazon S3 é possível armazenar os dados não estruturados e mesmo após a extração e normalização dos dados o S3 ainda sim mantem os arquivos originais fazendo assim com que possa ser possível reprocessa-los novamente caso necessário
 ```
 
 ---
@@ -144,7 +144,9 @@ Serviços que você pode considerar:
 **Sua resposta:**
 
 ```md
-Preencha aqui.
+para a extração dos dados será utilizado o AWS Lambda como orquestrador, ele identificara o tipo de arquivo e passará para a ferramenta de extração responsável sendo elas:
+Amazon Textract - responsável por separar PDF digitalizados, PNG e JPEG com texto e Documentos com tabelas e formulários.
+AWS Glue - Serviço de integração e ETL que pode ser utilizado para extrair, transformar e preparar grandes conjuntos de dados como CSV, JSON e Dados tabulares.
 ```
 
 ---
@@ -156,7 +158,7 @@ Explique como sua solução identificaria e registraria erros de processamento.
 **Sua resposta:**
 
 ```md
-Preencha aqui.
+seria utilizado o Amazon CloudWatch para Monitorar a execução das funções Lambda e registro de informações sobre o processamento junto com o AWS Step Functions para gerenciamento do fluxo de extração e tratativa de falhas
 ```
 
 ---
@@ -170,7 +172,7 @@ Explique como os textos extraídos seriam limpos, normalizados e preparados para
 **Sua resposta:**
 
 ```md
-Preencha aqui.
+para a normalização dos dados seria utilizado o AWS glue novamente pois ele é capaz de padronizar dados provenientes das etapas anteriores, limpar; transformar e organizar grandes volumes de dados e converter para JSON caso necessário
 ```
 
 ---
@@ -181,16 +183,16 @@ Defina quais metadados você extrairia de cada documento.
 
 | Metadado | Por que ele é importante? |
 |---|---|
-| Nome do documento | Preencha aqui |
-| Tipo do documento | Preencha aqui |
-| Data identificada | Preencha aqui |
-| Tema principal | Preencha aqui |
-| Participantes | Preencha aqui |
-| Decisões tomadas | Preencha aqui |
-| Responsáveis | Preencha aqui |
-| Próximos passos | Preencha aqui |
-| Nível de confidencialidade | Preencha aqui |
-| Caminho do arquivo original | Preencha aqui |
+| Nome do documento | Permite identificar o documento de forma rápida e facilita sua localização e organização na Wiki. |
+| Tipo do documento |Permite classificar o conteúdo, por exemplo, ata, relatório, manual, contrato, apresentação ou imagem, facilitando filtros e consultas.|
+| Data identificada | Permite organizar e consultar os documentos cronologicamente, além de identificar quando determinada informação foi produzida ou registrada. |
+| Tema principal | Permite categorizar o documento de acordo com seu assunto principal, facilitando a organização e a pesquisa na Wiki. |
+| Participantes | Registra as pessoas, equipes ou organizações mencionadas ou envolvidas no documento, permitindo consultas relacionadas a participantes. |
+| Decisões tomadas | Identifica decisões importantes presentes no documento, transformando informações dispersas em conhecimento estruturado e consultável. |
+| Responsáveis | Identifica as pessoas ou equipes responsáveis pelas ações, decisões ou atividades mencionadas no documento. |
+| Próximos passos | Registra ações futuras identificadas no documento, permitindo acompanhar tarefas e atividades pendentes. |
+| Nível de confidencialidade | Permite classificar o grau de acesso ao conteúdo, auxiliando no controle de permissões e na proteção de informações sensíveis. |
+| Caminho do arquivo original | Mantém a referência ao arquivo armazenado no Amazon S3, permitindo localizar o documento original e rastrear a origem das informações extraídas. |
 
 Adicione outros metadados, se necessário.
 
@@ -203,7 +205,7 @@ Explique como o Amazon Bedrock poderia ajudar a identificar temas, decisões, re
 **Sua resposta:**
 
 ```md
-Preencha aqui.
+O Amazon Bedrock pode ser utilizado após a etapa de extração e antes ou durante a normalização dos dados. Sua função seria analisar o texto extraído dos documentos e gerar informações estruturadas que nem sempre estão explicitamente disponíveis nos metadados originais, o Bedrock disponibiliza acesso a diferentes modelos de IA por meio de uma API, permitindo que o sistema envie o texto extraído para análise sem precisar desenvolver e hospedar um modelo de linguagem próprio
 ```
 
 ---
@@ -222,7 +224,7 @@ Serviços que você pode considerar:
 **Sua resposta:**
 
 ```md
-Preencha aqui.
+para armazenamento dos meta dados será utilizado o amazon DynamoDB; enquanto o amazon S3 ficará responsável pelo armazenamento dos dados normalizados o DynamoDB será utilizado para armazenamento de meta dados ja que esses não possuem uma estrutura de atributos definida e podem variar de acordo com cada documento fazendo com que um banco noSQL seja uma opção melhor
 ```
 
 ---
@@ -236,7 +238,7 @@ Explique como os documentos seriam divididos em trechos menores e preparados par
 **Sua resposta:**
 
 ```md
-Preencha aqui.
+Preencha aqui.após os dados serem normalizados eles serão encaminhados até o amazon Bedrock que fará o embedding dos dados para possa ser utilizado o Amazon OpenSearch Service para consultar os embeddings gerados pelo bedrock
 ```
 
 ---
@@ -256,7 +258,7 @@ Serviços que você pode considerar:
 **Sua resposta:**
 
 ```md
-Preencha aqui.
+os embeddings seriam gerados pelo amazon bedrock e ficariam salvos no amazon openSearch
 ```
 
 ---
@@ -275,7 +277,7 @@ Considere explicar:
 **Sua resposta:**
 
 ```md
-Preencha aqui.
+com a utilização do embedding gerado pelo amazon bedrock o amazon openSearch consegue tanto realizar uma busca textual procurando por palavras especificas nos documentos quanto uma busca semântica utilizando de linguagem natural  
 ```
 
 ---
@@ -295,7 +297,7 @@ Serviços que você pode considerar:
 **Sua resposta:**
 
 ```md
-Preencha aqui.
+pode se utilizar do Amazon CloudFront para criação de uma interface juntamente com o Amazon API gateway para criar uma API para processar a consulta e chamar os serviços necessários, 
 ```
 
 ---
@@ -317,7 +319,7 @@ Serviços que você pode considerar:
 **Sua resposta:**
 
 ```md
-Preencha aqui.
+os dados ficaram salvos no amazon S3, será utilizado o Amazon CloudWatch para controle de falhas e monitoramento da qualidade, ja a parte de controle de acessos seria configurada diretamente utilizando o Amazon API Gateway
 ```
 
 ---
@@ -333,7 +335,67 @@ Explique em poucas linhas a ideia central da sua arquitetura.
 **Sua resposta:**
 
 ```md
-Preencha aqui.
+┌──────────────┐
+│   Upload     │
+│ dos arquivos │
+└──────┬───────┘
+       ▼
+┌──────────────┐
+│  Amazon S3   │
+│ Dados brutos │
+└──────┬───────┘
+       ▼
+┌──────────────────────┐
+│      Extração        │
+│ Lambda / Textract /  │
+│      AWS Glue        │
+└──────┬───────────────┘
+       ▼
+┌──────────────────────┐
+│      Amazon S3       │
+│   Dados extraídos    │
+└──────┬───────────────┘
+       ▼
+┌──────────────────────┐
+│    Amazon Bedrock    │
+│ Enriquecimento com IA│
+└──────┬───────────────┘
+       ▼
+┌──────────────────────┐
+│      AWS Glue        │
+│    Normalização      │
+└──────┬───────────────┘
+       ▼
+┌──────────────────────┐
+│      Amazon S3       │
+│  Dados processados   │
+└──────┬───────────────┘
+       ▼
+┌──────────────────────┐
+│     AWS Lambda       │
+│       Chunking       │
+└──────┬───────────────┘
+       ▼
+┌──────────────────────┐
+│    Amazon Bedrock    │
+│     Embeddings       │
+└──────┬───────────────┘
+       ▼
+┌──────────────────────┐
+│ Amazon OpenSearch    │
+│ Indexação + Busca    │
+└──────┬───────────────┘
+       ▲
+       │
+┌──────┴───────────────┐
+│    Interface Wiki    │
+│  + API / Backend     │
+└──────────────────────┘
+
+        ┌─────────────────┐
+        │ Amazon DynamoDB │
+        │    Metadados    │
+        └─────────────────┘
 ```
 
 ---
@@ -447,16 +509,16 @@ Preencha aqui.
 
 Antes de entregar, confirme se sua solução responde:
 
-- [ ] Como transformar documentos escaneados em texto?
-- [ ] Como lidar com diferentes formatos dentro da mesma pasta `raw/`?
-- [ ] Como armazenar os documentos originais?
-- [ ] Como preservar a rastreabilidade entre resposta e documento fonte?
-- [ ] Como organizar metadados?
-- [ ] Como criar busca semântica?
-- [ ] Como usar Amazon Bedrock na solução?
-- [ ] Como proteger documentos sensíveis?
-- [ ] Como monitorar falhas?
-- [ ] Como a empresa usaria essa Wiki no dia a dia?
+- [x] Como transformar documentos escaneados em texto?
+- [x] Como lidar com diferentes formatos dentro da mesma pasta `raw/`?
+- [x] Como armazenar os documentos originais?
+- [x] Como preservar a rastreabilidade entre resposta e documento fonte?
+- [x] Como organizar metadados?
+- [x] Como criar busca semântica?
+- [x] Como usar Amazon Bedrock na solução?
+- [x] Como proteger documentos sensíveis?
+- [x] Como monitorar falhas?
+- [x] Como a empresa usaria essa Wiki no dia a dia?
 
 ---
 
